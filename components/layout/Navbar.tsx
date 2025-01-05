@@ -83,7 +83,7 @@ const {isConnected} = useAccount();
           </div>
           {/* <ConnectButton /> */}
           {/* Mobile Buttons */}
-          <div className="md:hidden">
+          <div className="max-md:hidden">
             {/* <Button
               className="bg-primary text-black hover:text-white rounded-lg hover:bg-secondary h-8 text-sm px-4"
               onClick={initWallet}
