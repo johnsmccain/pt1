@@ -81,7 +81,7 @@ const {isConnected} = useAccount();
               {userAddress === "" ? "Connect Wallet" : shortenAddress(userAddress)}
             </Button> */}
           </div>
-          <ConnectButton />
+          {/* <ConnectButton /> */}
           {/* Mobile Buttons */}
           <div className="md:hidden">
             {/* <Button
@@ -91,7 +91,7 @@ const {isConnected} = useAccount();
               {userAddress === "" ? "Connect Wallet" : shortenAddress(userAddress)}
             </Button> */}
             {/* <w3m-button /> */}
-            <ConnectButton />
+            {/* <ConnectButton /> */}
           </div>
 
           {/* Hamburger Menu for Mobile */}
