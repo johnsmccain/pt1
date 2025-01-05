@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <PresaleProvider>
-          <ContextProvider cookies={null}>
+          <ContextProvider>
             <Navbar />
             {children}
             <AlertBanner />

@@ -32,12 +32,12 @@ export function MobileMenu() {
             <div className="flex justify-between items-center mb-8">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8">λ</div>
-                <Button 
+                {/* <Button 
                   className="bg-primary hover:bg-primary text-white"
                   onClick={initWallet}
                 >
                   {userAddress === "" ? "Connect Wallet" : shortenAddress(userAddress)}
-                </Button>
+                </Button> */}
               </div>
               <Button
                 variant="ghost"

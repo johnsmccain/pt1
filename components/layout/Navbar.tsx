@@ -9,14 +9,15 @@ import { shortenAddress } from "@/lib/utils";
 import { usePresale } from "@/providers/provider";
 
 import { useAccount } from "wagmi";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { initWallet, userAddress } = usePresale();
 const {isConnected} = useAccount();
 
-  useEffect(() => {
-  }, [userAddress]);
+  // useEffect(() => {
+  // }, [userAddress]);
 
   return (
     <nav className="fixed top-3 w-full z-50">
@@ -79,9 +80,8 @@ const {isConnected} = useAccount();
             >
               {userAddress === "" ? "Connect Wallet" : shortenAddress(userAddress)}
             </Button> */}
-            <w3m-button />
           </div>
-
+          <ConnectButton />
           {/* Mobile Buttons */}
           <div className="md:hidden">
             {/* <Button
@@ -90,7 +90,8 @@ const {isConnected} = useAccount();
             >
               {userAddress === "" ? "Connect Wallet" : shortenAddress(userAddress)}
             </Button> */}
-            <w3m-button />
+            {/* <w3m-button /> */}
+            <ConnectButton />
           </div>
 
           {/* Hamburger Menu for Mobile */}
@@ -180,7 +181,8 @@ const {isConnected} = useAccount();
                       </Link>
                     </div>
                     
-                      <w3m-button />
+                      {/* <w3m-button /> */}
+                      <ConnectButton />
                     
                   </div>
                 </div>
