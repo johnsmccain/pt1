@@ -16,8 +16,8 @@ export function Navbar() {
   const { initWallet, userAddress } = usePresale();
 const {isConnected} = useAccount();
 
-  // useEffect(() => {
-  // }, [userAddress]);
+  useEffect(() => {
+  }, [userAddress]);
 
   return (
     <nav className="fixed top-3 w-full z-50">
@@ -80,8 +80,9 @@ const {isConnected} = useAccount();
             >
               {userAddress === "" ? "Connect Wallet" : shortenAddress(userAddress)}
             </Button> */}
+            {/* <ConnectButton /> */}
           </div>
-          {/* <ConnectButton /> */}
+
           {/* Mobile Buttons */}
           <div className="max-md:hidden">
             {/* <Button
@@ -90,8 +91,7 @@ const {isConnected} = useAccount();
             >
               {userAddress === "" ? "Connect Wallet" : shortenAddress(userAddress)}
             </Button> */}
-            {/* <w3m-button /> */}
-            <ConnectButton />
+            <ConnectButton/>
           </div>
 
           {/* Hamburger Menu for Mobile */}
@@ -107,8 +107,7 @@ const {isConnected} = useAccount();
 
             {/* Mobile Menu */}
             <div
-              className={`fixed inset-0 bg-black bg-opacity-90 z-50 transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"
-                }`}
+              className={`fixed inset-0 bg-black bg-opacity-90 z-50 transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
               <div className="p-4 relative bg-dark flex flex-col h-full">
                 <div className="flex justify-between items-center mb-8">
@@ -181,7 +180,6 @@ const {isConnected} = useAccount();
                       </Link>
                     </div>
                     
-                      {/* <w3m-button /> */}
                       <ConnectButton />
                     
                   </div>
