@@ -101,22 +101,23 @@ export function usePresale() {
           ref, // ref
           parsedAmount
         ],
+        // value: parsedAmount
       })
 
       const buyTxTransactionReceipt = waitForTransactionReceipt(config, {
         hash: buyTx,
       })
-      buyTxTransactionReceipt.then(() => {
-        setStatus(PurchaseStatus.APPROVED);
-      })
       
       // Fetch and update only the necessary data
       const ucci = await getUCCInfo();
       const useri = await getUserInfo( _userAddress, 1);
-      setUCCInfo(ucci);
-      setUserUCCInfo(useri);
+      buyTxTransactionReceipt.then(() => {
+        setUCCInfo(ucci);
+        setUserUCCInfo(useri);
+  
+        setStatus(PurchaseStatus.CONFIRMED);
+      })
 
-      setStatus(PurchaseStatus.CONFIRMED);
 
       toast.success(
         "Purchase completed successfully!",
@@ -160,7 +161,7 @@ export function usePresale() {
           ref, // ref
           0,
         ],
-        value: parsedAmount
+        // value: parsedAmount
       })
      
       // Fetch and update only the necessary data
