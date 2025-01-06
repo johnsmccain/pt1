@@ -5,6 +5,7 @@ import { PRESALE_ABI, ERC20_ABI } from '@/lib/contracts/abis';
 import { getWeb3Provider } from '@/lib/web3/provider';
 import { toast } from '@/components/ui/use-toast';
 import { UCCInfo, UserUCCInfo } from '@/lib/types';
+import { useEthersSigner } from '@/config/ethers';
 
 export enum PurchaseStatus {
   IDLE = 'IDLE',
@@ -27,9 +28,10 @@ export function usePresale() {
   const [userUCCInfo, setUserUCCInfo] = useState<UserUCCInfo>({
     userId: 0, usersInfo: null, recentActivities: [], activityLength: 0
   });
-
+  const signer = useEthersSigner()
   async function initWallet() {
     try {
+      console.log(signer)
       const _provider = await getWeb3Provider();
       const _signer = await _provider.getSigner();
       const _userAddress = await _signer.getAddress();
