@@ -44,7 +44,7 @@ export function usePresale() {
       //   _signer
       // );
       setUserAddress(account?.address || "");
-      console.log(account?.address || "");
+      // console.log(account?.address || "");
       // console.log(_userAddress);
       const ucci = await getUCCInfo();
       const useri = await getUserInfo( account?.address || "", curPage);
@@ -83,9 +83,9 @@ export function usePresale() {
       approveTxTransactionReceipt.then(() => {
         setStatus(PurchaseStatus.APPROVED);
       })
+      setStatus(PurchaseStatus.PURCHASING);
 
       // Buy tokens
-      setStatus(PurchaseStatus.PURCHASING);
       
       // const buyTx = await ps.buy(
       //   _userAddress,
@@ -116,17 +116,17 @@ export function usePresale() {
         setUserUCCInfo(useri);
   
         setStatus(PurchaseStatus.CONFIRMED);
+        toast.success(
+          "Purchase completed successfully!",
+          {
+            duration: 3000,
+            position: "top-right",
+          }
+        );
+        setStatus(PurchaseStatus.IDLE);
       })
 
 
-      toast.success(
-        "Purchase completed successfully!",
-        {
-          duration: 3000,
-          position: "top-right",
-        }
-      );
-      setStatus(PurchaseStatus.IDLE);
     } catch (error: any) {
       console.log(error.reason);
       setStatus(PurchaseStatus.ERROR);
@@ -175,16 +175,16 @@ export function usePresale() {
         setUCCInfo(ucci);
         setUserUCCInfo(useri);
         setStatus(PurchaseStatus.CONFIRMED);
+        toast.success(
+          "Purchase completed successfully!",
+          {
+            duration: 3000,
+            position: "top-right",
+          }
+        );
+        setStatus(PurchaseStatus.IDLE);
       })
 
-      toast.success(
-        "Purchase completed successfully!",
-        {
-          duration: 3000,
-          position: "top-right",
-        }
-      );
-      setStatus(PurchaseStatus.IDLE);
 
     } catch (error: any) {
       console.log(error.reason);
@@ -286,7 +286,7 @@ export function usePresale() {
             functionName: 'getRecentActivities',
             args: [userId, cpage]
           })
-          console.log(recentActivities);
+          // console.log(recentActivities);
         }
       } catch (error) {
         recentActivities = [];

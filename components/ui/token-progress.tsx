@@ -18,6 +18,7 @@ interface TokenProgressProps {
   tokenBNBPrice: number;
   tokensSold: number;
   totalTokens: number;
+  userInfo:any;
   userId: number;
   userDepositsUSDT: number;
   userDepositsBNB: number;
@@ -49,13 +50,25 @@ export function TokenProgress({
   const [amount, setAmount] = useState("");
   const { status, buyWithUSDT, buyWithBNB } = usePresale();
   const [showActivities, setShowActivities] = useState(false);
-
+  // console.log(status);
   const handleAmountChange = (value: string) => {
     if (value === "" || /^\d*\.?\d*$/.test(value)) {
       setAmount(value);
     }
   };
-
+// console.log(  `{tokenUSDTPrice}: ${tokenUSDTPrice},
+//   {tokenBNBPrice}: ${tokenBNBPrice},
+//   {tokensSold}: ${tokensSold},
+//   {totalTokens}: ${totalTokens},
+//   {userId}: ${userId},kenUSDTPrice}: 0,
+//   {userDepositsUSDT}: ${userDepositsUSDT},
+//   {userDepositsBNB}: ${userDepositsBNB},
+//   {progress}: ${progress},
+//   {userEarningsBNB}: ${userEarningsBNB},
+//   {userEarningsUSDT}: ${userEarningsUSDT},
+//   {userTokens}: ${userTokens},
+//   {activities}: ${activities},
+//   {activitiesLength}: ${activitiesLength}`);
   const calculateTokenAmount = useCallback(
     (inputAmount: string) => {
       const numAmount = parseFloat(inputAmount) || 0;
@@ -120,7 +133,7 @@ export function TokenProgress({
                 className="w-3 h-3 md:w-5 md:h-5"
               />
               <span className="text-[#F0B90B] md:text-sm text-[8px] font-semibold ">
-                0.100 USDT
+                0.125 USDT
               </span>
             </div>
           </div>
@@ -145,6 +158,7 @@ export function TokenProgress({
           {Object.entries(SUPPORTED_TOKENS).map(([symbol, details]) => (
             <Button
               key={symbol}
+              // disabled
               variant={selectedToken === symbol ? "secondary" : "ghost"}
               onClick={() => setSelectedToken(symbol)}
               className="flex items-center gap-1 w-full"
@@ -186,7 +200,7 @@ export function TokenProgress({
         <PurchaseButton
           status={status}
           onClick={handlePurchase}
-          disabled={!amount || parseFloat(amount) <= 0}
+          disabled={!amount || parseFloat(amount) <= 0 || status == "APPROVING"|| status == "APPROVED" ||status == "PURCHASING" }
         />
       </div>
 
@@ -214,6 +228,7 @@ export function TokenProgress({
               totalEarningsBNB={b2f(userEarningsBNB).toFixed(2)}
               totalDepositBNB={b2f(userDepositsBNB).toFixed(2)}
               totalDepositUSDT={b2f(userDepositsUSDT).toFixed(2)}
+
             />
 
             <div>

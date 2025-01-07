@@ -24,8 +24,8 @@ export function PurchaseButton({ status, onClick, disabled }: PurchaseButtonProp
       case PurchaseStatus.APPROVED:
         return (
           <>
-            <Check className="mr-2 h-4 w-4" />
-            USDT Approved - Click to Buy
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Processing purchase...
           </>
         );
       case PurchaseStatus.PURCHASING:

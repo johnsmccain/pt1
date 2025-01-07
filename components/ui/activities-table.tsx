@@ -1,7 +1,14 @@
 "use client";
 
 import { b2f, b2i } from "@/hooks/usePresale";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./table";
 import { formatDate, shortenAddress } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { usePresale } from "@/providers/provider";
@@ -17,19 +24,21 @@ export interface Activity {
 
 interface ActivitiesTableProps {
   activities: Activity[];
-  length: number
+  length: number;
 }
 
-export function ActivitiesTable({ activities,length }: ActivitiesTableProps) {
+export function ActivitiesTable({ activities, length }: ActivitiesTableProps) {
   const rowsPerPage = 10; // Number of rows per page
-  const {curPage, setCurPage} = usePresale();
+  const { curPage, setCurPage } = usePresale();
 
   // Calculate total pages
-  const totalPages = Math.ceil(length / rowsPerPage);
+  const totalPages = Math.ceil(length / rowsPerPage) == 0 ? 1 : Math.ceil(length / rowsPerPage);
+  // console.log(totalPages, length, activities, " activities");
 
   // Pagination handlers
   const handlePreviousPage = () => setCurPage((prev) => Math.max(prev - 1, 1));
-  const handleNextPage = () => setCurPage((prev) => Math.min(prev + 1, totalPages));
+  const handleNextPage = () =>
+    setCurPage((prev) => Math.min(prev + 1, totalPages));
 
   return (
     <div className="rounded-xl border border-[#F0B90B]/20 overflow-hidden">
@@ -44,8 +53,8 @@ export function ActivitiesTable({ activities,length }: ActivitiesTableProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {activities.map((activity,id) => (
-            <TableRow 
+          {activities.map((activity, id) => (
+            <TableRow
               key={id}
               className="border-b text-left border-[#F0B90B]/20 bg-black/20 hover:bg-[#F0B90B]/5"
             >
@@ -61,19 +70,32 @@ export function ActivitiesTable({ activities,length }: ActivitiesTableProps) {
                 </a>
               </TableCell> */}
               <TableCell>
-                {(activity.mode) == 1 ? parseInt(activity.refId.toString()) : parseInt(activity.id.toString())}
+                {activity.mode == 1
+                  ? parseInt(activity.refId.toString())
+                  : parseInt(activity.id.toString())}
               </TableCell>
               <TableCell>
-                <span className="capitalize">{(activity.mode) == 0 ? "Investment": ((activity.mode) == 1 ? `Referral`: "Dividend")}</span>
+                <span className="capitalize">
+                  {activity.mode == 0
+                    ? "Investment"
+                    : activity.mode == 1
+                    ? `Referral`
+                    : "Dividend"}
+                </span>
               </TableCell>
               <TableCell className="text-right font-medium text-[#F0B90B]">
-                {b2f(activity.tokenAmt).toFixed(2)} UCC {activity.mode == 1 ? (b2f(activity.bnbAmt) == 0 ? `+ ${b2f(activity.usdtAmt).toFixed(2)} USDT` :`+ ${b2f(activity.bnbAmt).toFixed(4)} BNB` ) : ""}
+                {b2f(activity.tokenAmt).toFixed(2)} UCC{" "}
+                {activity.mode == 1
+                  ? b2f(activity.bnbAmt) == 0
+                    ? `+ ${b2f(activity.usdtAmt).toFixed(2)} USDT`
+                    : `+ ${b2f(activity.bnbAmt).toFixed(4)} BNB`
+                  : ""}
               </TableCell>
-            </TableRow>))}
-          </TableBody>
-         
-        </Table>
-        {/* Pagination Controls */}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      {/* Pagination Controls */}
       <div className="flex justify-between items-center mt-4">
         <button
           onClick={handlePreviousPage}
@@ -93,8 +115,6 @@ export function ActivitiesTable({ activities,length }: ActivitiesTableProps) {
           Next
         </button>
       </div>
-      </div>
-
-     
+    </div>
   );
 }

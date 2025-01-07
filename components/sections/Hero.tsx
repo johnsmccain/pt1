@@ -26,6 +26,7 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, []);
 
+  // console.log(userUCCInfo.usersInfo[3])
   return (
     <section className="relative min-h-screen pt-20 flex mb-10 flex-col items-center justify-center overflow-hidden">
       {/* Background Effects */}
@@ -82,12 +83,13 @@ export default function Hero() {
             <TokenProgress
               tokenBNBPrice={uccInfo.priceBNB}
               tokenUSDTPrice={uccInfo.priceUSDT}
-              userDepositsUSDT={userUCCInfo.usersInfo?.totalDepositUSDT ?? 0}
-              userDepositsBNB={userUCCInfo.usersInfo?.totalDepositBNB ?? 0}
-              userEarningsBNB={userUCCInfo.usersInfo?.refIncomeBNB ?? 0}
-              userEarningsUSDT={userUCCInfo.usersInfo?.refIncomeUSDT ?? 0}
+              userInfo={userUCCInfo.usersInfo}
+              userDepositsUSDT={userUCCInfo.usersInfo?.[3] ?? 0}
+              userDepositsBNB={userUCCInfo.usersInfo?.[4] ?? 0}
+              userEarningsBNB={userUCCInfo.usersInfo?.[6] ?? 0}
+              userEarningsUSDT={userUCCInfo.usersInfo?.[5] ?? 0}
               userId={userUCCInfo.userId}
-              userTokens={userUCCInfo.usersInfo?.totalTokens ?? 0}
+              userTokens={userUCCInfo.usersInfo?.[7] ?? 0}
               progress={
                 uccInfo.totalTokensToBEDistributed &&
                 (uccInfo.totalTokensToBEDistributed * 100) / 10000000
