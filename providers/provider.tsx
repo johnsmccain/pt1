@@ -21,6 +21,7 @@ useEffect(() => {
   return () => {   
     initWallet().then(() => {
       console.log("done")
+      
     });
   }
 },[curPage,userAddress,totalTokens])
