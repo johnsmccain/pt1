@@ -49,6 +49,20 @@ const {isConnected} = useAccount();
           <div className="hidden md:flex items-center space-x-4">
             <div className="social flex gap-2 items-center">
             <Link
+                        href='https://t.me/universecryptochain'
+                        className="text-muted-foreground flex gap-1 items-center hover:text-foreground transition-colors font-light"
+                      >
+                        {/* <Image
+                          src="/images/telegram.svg"
+                          alt="telegram-logo"
+                          width={18}
+                          height={18}
+                          priority
+                        /> */}
+                        <span>Chat</span>
+
+                      </Link>
+            <Link
                 href='https://x.com/ucchainofficial'
                 className="text-muted-foreground hover:text-foreground transition-colors font-light"
               >
@@ -84,7 +98,7 @@ const {isConnected} = useAccount();
           </div>
 
           {/* Mobile Buttons */}
-          <div className="max-md:hidden">
+          <div className="">
             {/* <Button
               className="bg-primary text-black hover:text-white rounded-lg hover:bg-secondary h-8 text-sm px-4"
               onClick={initWallet}
@@ -151,7 +165,7 @@ const {isConnected} = useAccount();
                         /> 
                       </Link>
                       <Link
-                        href='https://x.com/ucchainofficial'
+                        href='https://t.me/universecryptochain'
                         className="text-muted-foreground flex gap-1 items-center hover:text-foreground transition-colors font-light"
                       >
                         <Image
