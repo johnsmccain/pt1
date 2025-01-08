@@ -317,6 +317,7 @@ export function usePresale() {
     userAddress,
     totalTokens,
     curPage,
+    getUserInfo,
     setCurPage,
     buyWithUSDT,
     buyWithBNB,
