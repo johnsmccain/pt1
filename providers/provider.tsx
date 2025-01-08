@@ -23,7 +23,7 @@ useEffect(() => {
       console.log("done")
     });
   }
-},[])
+},[curPage,userAddress,totalTokens])
 
   return (
     <PresaleContext.Provider value={{status,
