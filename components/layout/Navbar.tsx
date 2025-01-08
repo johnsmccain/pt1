@@ -13,11 +13,10 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { initWallet, userAddress } = usePresale();
-const {isConnected} = useAccount();
+  const { userAddress } = usePresale();
 
-  useEffect(() => {
-  }, [userAddress]);
+
+
 
   return (
     <nav className="fixed top-3 w-full z-50">
