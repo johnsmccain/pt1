@@ -36,8 +36,8 @@ export function usePresale() {
   async function initWallet() {
     try {
       // const result = await connect(config, { connector: injected() })
-
-      const result = await connect(config, { connector: injected() })
+      const account = getAccount(config)
+      // const result = await connect(config, { connector: injected() })
       // console.log(result.accounts[0])
       // Presale Contract
       // const ps = new ethers.Contract(
@@ -46,11 +46,11 @@ export function usePresale() {
       //   _signer
       // );
 
-      setUserAddress(result.accounts[0]);
+      setUserAddress(account?.address || "");
       // console.log(account?.address || "");
       // console.log(_userAddress);
       const ucci = await getUCCInfo();
-      const useri = await getUserInfo( result.accounts[0], curPage);
+      const useri = await getUserInfo( account?.address || "", curPage);
       setUCCInfo(ucci);
       setUserUCCInfo(useri);
     } catch (error) {
