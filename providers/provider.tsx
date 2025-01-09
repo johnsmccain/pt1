@@ -18,12 +18,9 @@ export const PresaleProvider = ({ children }: { children: ReactNode }) => {
     initWallet} = usePresaleHook();
 
 useEffect(() => {
-  return () => {   
-    initWallet().then(() => {
-      console.log("done")
-      
-    });
-  }
+  initWallet().then(() => {
+    console.log("done")
+  });
 },[curPage,userAddress,totalTokens])
 
   return (

@@ -30,7 +30,7 @@ interface ActivitiesTableProps {
 export function ActivitiesTable({ activities, length }: ActivitiesTableProps) {
   const rowsPerPage = 10; // Number of rows per page
   const { curPage, setCurPage } = usePresale();
-console.log(activities, length)
+
   // Calculate total pages
   const totalPages = Math.ceil(length / rowsPerPage) == 0 ? 1 : Math.ceil(length / rowsPerPage);
   // console.log(totalPages, length, activities, " activities");
