@@ -9,7 +9,6 @@ import { connect, getAccount, readContract, waitForTransactionReceipt, writeCont
 import { injected } from '@wagmi/connectors'
 import { config } from '@/lib/config';
 import { parseEther } from 'viem';
-import { useConnectors } from 'wagmi';
 
 export enum PurchaseStatus {
   IDLE = 'IDLE',
@@ -37,15 +36,13 @@ export function usePresale() {
     try {
       // const result = await connect(config, { connector: injected() })
       const account = getAccount(config)
-      // const result = await connect(config, { connector: injected() })
-      // console.log(result.accounts[0])
+
       // Presale Contract
       // const ps = new ethers.Contract(
       //   ADDRESSES.PRESALE,
       //   PRESALE_ABI,
       //   _signer
       // );
-
       setUserAddress(account?.address || "");
       // console.log(account?.address || "");
       // console.log(_userAddress);
